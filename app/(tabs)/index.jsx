@@ -1,20 +1,33 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Alert } from 'react-native';
 import Constants from 'expo-constants';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const LookBookScreen = () => {
+    const showAlert = (message) => {
+        Alert.alert(
+            'Alerta',
+            message,
+            [{ text: 'OK', onPress: () => console.log('OK Pressed') }],
+            { cancelable: false }
+        );
+    };
+
     return (
         <View style={styles.container}>
             <Text style={styles.title}>LookBook</Text>
             <View style={styles.buttonContainer}>
-                <View style={styles.button}><Text>Conjunto</Text></View>
-                <View style={styles.button}><Text>Armario</Text></View>
+                <TouchableOpacity style={styles.button} onPress={() => showAlert('Conjunto presionado')}>
+                    <Text>Conjunto</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.button} onPress={() => showAlert('Armario presionado')}>
+                    <Text>Armario</Text>
+                </TouchableOpacity>
             </View>
             <Text style={styles.sectionTitle}>Favoritos</Text>
             <View style={styles.favoritesContainer}>
                 {[...Array(4)].map((_, index) => (
-                    <View key={index} style={styles.placeholder}>
-                    </View>
+                    <View key={index} style={styles.customShape} />
                 ))}
             </View>
         </View>
@@ -52,14 +65,15 @@ const styles = StyleSheet.create({
         marginLeft: 10,
     },
     favoritesContainer: {
-        alignItems: 'center',
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        justifyContent: 'space-around',
     },
-    placeholder: {
-        borderWidth: 1,
-        borderColor: '#000',
-        padding: 20,
-        marginVertical: 10,
-        width: '80%',
-        alignItems: 'center',
+    customShape: {
+        width: 100,
+        height: 100,
+        backgroundColor: '#ccc',
+        margin: 10,
+        borderRadius: 10, 
     },
 });
