@@ -1,9 +1,15 @@
-import React from 'react';
-import { StyleSheet, Text, View, Alert } from 'react-native';
-import Constants from 'expo-constants';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import React, { useState } from 'react'; 
+import { StyleSheet, Text, View, Alert, Pressable } from "react-native";
+import Constants from "expo-constants";
+import { Switch } from "react-native-ui-lib";
+import AntDesign from "@expo/vector-icons/AntDesign";
+import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 
-const LookBookScreen = () => {
+const Settings = () => {
+    
+    const [cameraEnabled, setCameraEnabled] = useState(false);
+    const [galleryEnabled, setGalleryEnabled] = useState(false);
+
     const showAlert = (message) => {
         Alert.alert(
             'Alerta',
@@ -15,26 +21,48 @@ const LookBookScreen = () => {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>LookBook</Text>
-            <View style={styles.buttonContainer}>
-                <TouchableOpacity style={styles.button} onPress={() => showAlert('Conjunto presionado')}>
-                    <Text>Conjunto</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.button} onPress={() => showAlert('Armario presionado')}>
-                    <Text>Armario</Text>
-                </TouchableOpacity>
+            <View style={{ padding: 20 }}>
+                <Text style={{ fontSize: 20, fontWeight: "bold" }}>Configuracion</Text>
             </View>
+
+            <View style={styles.margen}>
+                <Text style={{ fontWeight: "bold" }}>Camara</Text>
+                <Switch
+                    value={cameraEnabled}
+                    onValueChange={(newValue) => {
+                        setCameraEnabled(newValue);
+                        console.log('Camara camara cambia a:', newValue);
+                    }}
+                />
+            </View>
+            <View style={styles.margen}>
+                <Text style={{ fontWeight: "bold" }}>Galeria</Text>
+                <Switch
+                    value={galleryEnabled}
+                    onValueChange={(newValue) => {
+                        setGalleryEnabled(newValue);
+                        console.log('Galeria galeria cambia a:', newValue);
+                    }}
+                />
+            </View>
+
             <Text style={styles.sectionTitle}>Favoritos</Text>
             <View style={styles.favoritesContainer}>
                 {[...Array(4)].map((_, index) => (
-                    <View key={index} style={styles.customShape} />
+                    <Pressable
+                        key={index}
+                        onPress={() => showAlert(`Favorito ${index + 1} presionado`)}
+                        style={styles.customShape}
+                    >
+                        <AntDesign name="heart" size={24} color="black" />
+                    </Pressable>
                 ))}
             </View>
         </View>
     );
-};
+}
 
-export default LookBookScreen;
+export default Settings;
 
 const styles = StyleSheet.create({
     container: {
@@ -42,22 +70,16 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         paddingTop: Constants.statusBarHeight,
     },
-    title: {
-        fontSize: 24,
-        fontWeight: 'bold',
-        textAlign: 'center',
-        marginVertical: 20,
-    },
-    buttonContainer: {
-        flexDirection: 'row',
-        justifyContent: 'space-around',
-        marginBottom: 20,
-    },
-    button: {
+    margen: {
         borderWidth: 1,
-        borderColor: '#000',
-        paddingVertical: 10,
-        paddingHorizontal: 20,
+        borderColor: "black",
+        padding: 10,
+        marginHorizontal: 20,
+        marginVertical: 10,
+        backgroundColor: "#fff",
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
     },
     sectionTitle: {
         fontWeight: 'bold',
@@ -74,6 +96,8 @@ const styles = StyleSheet.create({
         height: 100,
         backgroundColor: '#ccc',
         margin: 10,
-        borderRadius: 10, 
+        borderRadius: 10, // Puedes ajustar esto para cambiar la forma
+        justifyContent: 'center',
+        alignItems: 'center',
     },
 });
