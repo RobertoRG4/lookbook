@@ -1,9 +1,8 @@
-import React from 'react'; 
 import { StyleSheet, Pressable, Text, View, Dimensions } from "react-native";
 import Constants from "expo-constants";
 
 const { width } = Dimensions.get('window');
-const itemSize = (width - 60) / 2; // Ajuste para dos columnas con márgenes
+const itemSize = (width - 60) / 2
 
 const HomeScreen = () => {
   return (
