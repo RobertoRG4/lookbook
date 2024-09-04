@@ -10,13 +10,14 @@ const Settings = () => {
 
     return (
         <View style={styles.container}>
-            <View style={{ padding: 20 }}>
-                <Text style={{ fontSize: 20, fontWeight: "bold" }}>Configuracion</Text>
+            <View style={{ padding: 20, marginBottom:20 }}>
+                <Text style={{ fontSize: 20, fontWeight: "bold", }}>Configuracion</Text>
             </View>
 
             <View style={styles.margen}>
-                <Text style={{ fontWeight: "bold" }}>Camara</Text>
+                <Text style={{padding:4}} >Camara</Text>
                 <Switch
+                    style={{marginLeft:"auto"}}
                     value={cameraEnabled}
                     onValueChange={(newValue) => {
                         setCameraEnabled(newValue);
@@ -25,8 +26,9 @@ const Settings = () => {
                 />
             </View>
             <View style={styles.margen}>
-                <Text style={{ fontWeight: "bold" }}>Galeria</Text>
+                <Text style={{padding:4}}>Galeria</Text>
                 <Switch
+                    style={{marginLeft:"auto"}}
                     value={galleryEnabled}
                     onValueChange={(newValue) => {
                         setGalleryEnabled(newValue);
@@ -47,14 +49,15 @@ const styles = StyleSheet.create({
         paddingTop: Constants.statusBarHeight,
     },
     margen: {
-        borderWidth: 1,
-        borderColor: "black",
         padding: 10,
-        marginHorizontal: 20,
-        marginVertical: 10,
-        backgroundColor: "#fff",
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
+        borderWidth: 1,
+        margin: 5,
+        flexDirection: "row",
+        alignItems: "center",
+        marginHorizontal:25,
+     
+       
+        
+        
     },
 });
