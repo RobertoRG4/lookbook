@@ -5,6 +5,7 @@ const Index = () => {
   return (
     <View style={Styles.Container}>
       <Text>Hola mundo</Text>
+      <Text>HOLAAAAAA</Text>
       <Button
         onPress={() => Alert.alert("Hola mundo")}
         label={"Button"}
