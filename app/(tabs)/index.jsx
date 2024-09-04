@@ -1,6 +1,9 @@
 import React from 'react'; 
-import { StyleSheet, Pressable, Text, View } from "react-native";
+import { StyleSheet, Pressable, Text, View, Dimensions } from "react-native";
 import Constants from "expo-constants";
+
+const { width } = Dimensions.get('window');
+const itemSize = (width - 60) / 2; // Ajuste para dos columnas con márgenes
 
 const HomeScreen = () => {
   return (
@@ -16,22 +19,21 @@ const HomeScreen = () => {
       </View>
       <View style={styles.favorites}>
         <Text style={styles.sectionTitle}>Favoritos</Text>
-        <View style={styles.favoriteItem}>
-          <Text style={styles.favoriteText}>Nombre</Text>
-        </View>
-        <View style={styles.favoriteItem}>
-          <Text style={styles.favoriteText}>Nombre</Text>
-        </View>
-        <View style={styles.favoriteItem}>
-          <Text style={styles.favoriteText}>Nombre</Text>
-        </View>
-        <View style={styles.favoriteItem}>
-          <Text style={styles.favoriteText}>Nombre</Text>
+        <View style={styles.grid}>
+          <View style={styles.favoriteItem}>
+            <Text style={styles.favoriteText}>Nombre</Text>
+          </View>
+          <View style={styles.favoriteItem}>
+            <Text style={styles.favoriteText}>Nombre</Text>
+          </View>
+          <View style={styles.favoriteItem}>
+            <Text style={styles.favoriteText}>Nombre</Text>
+          </View>
+          <View style={styles.favoriteItem}>
+            <Text style={styles.favoriteText}>Nombre</Text>
+          </View>
         </View>
       </View>
-      <Pressable style={styles.addButton} onPress={() => alert("Agregar nuevo favorito")}>
-        <Text style={styles.addButtonText}>+</Text>
-      </Pressable>
     </View>
   );
 }
@@ -66,6 +68,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   favorites: {
+    flex: 1,
     padding: 20,
   },
   sectionTitle: {
@@ -73,30 +76,21 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 10,
   },
+  grid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+  },
   favoriteItem: {
-    padding: 10,
+    width: itemSize,
+    height: itemSize,
     borderWidth: 1,
     borderColor: 'black',
-    marginVertical: 5,
-    borderRadius: 5,
-  },
-  favoriteText: {
-    fontSize: 16,
-  },
-  addButton: {
-    position: 'absolute',
-    bottom: 20,
-    right: 20,
-    backgroundColor: 'black',
-    width: 50,
-    height: 50,
-    borderRadius: 25,
+    marginBottom: 20,
     justifyContent: 'center',
     alignItems: 'center',
   },
-  addButtonText: {
-    color: 'white',
-    fontSize: 24,
-    fontWeight: 'bold',
+  favoriteText: {
+    fontSize: 16,
   },
 });
