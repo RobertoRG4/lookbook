@@ -1,5 +1,4 @@
-import { View, Text } from "react-native-ui-lib";
-import { StyleSheet, Pressable, Alert } from "react-native";
+import { StyleSheet, Pressable, Alert, Text, View } from "react-native";
 import Constants from "expo-constants";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";

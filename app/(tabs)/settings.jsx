@@ -7,7 +7,6 @@ const Settings =() =>{
             <Text>
                 Hola Roberto
             </Text>
-            <Text>GAYDIEL</Text>
             <StatusBar style="auto"/>
         </View>
     );
